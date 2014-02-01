@@ -10,5 +10,5 @@ public interface HomePage{
 
     public void checkTown(String town);
 
-    void changeTown(String town);
+    void changeTown();
 }

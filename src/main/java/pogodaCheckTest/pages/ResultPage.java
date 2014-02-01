@@ -6,7 +6,7 @@ public interface ResultPage {
 
     public Boolean checkNotNullResults();
 
-    public void chooseTown();
+    public void chooseTown(String town);
 
     public void checkNullResults();
 }

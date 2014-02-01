@@ -39,8 +39,8 @@ public class SearchStepsImpl extends ScenarioSteps {
     public void checkCurrentTown(String town) {
         if(commonPage.getCurrentUrl().contains("/search/")){
             if(resultPage.checkNotNullResults()){
-                resultPage.chooseTown();
-            }else throw new NoSuchElementException("There is no \" + town + \"in the search");
+                resultPage.chooseTown(town);
+            }else throw new NoSuchElementException("There is no " + town + " in the search");
 
         }
         homePage.checkTown(town);
@@ -53,7 +53,7 @@ public class SearchStepsImpl extends ScenarioSteps {
 
     @Step
     public void changeTown(String town) {
-        homePage.changeTown(town);
-        resultPage.chooseTown();
+        homePage.changeTown();
+        resultPage.chooseTown(town);
     }
 }

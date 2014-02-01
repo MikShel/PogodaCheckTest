@@ -64,7 +64,7 @@ public class HomePageImpl extends BlockPageObject implements HomePage {
     }
 
     @Override
-    public void changeTown(String town) {
+    public void changeTown() {
         changeTownLink.click();
         if (!driver.getCurrentUrl().contains("/search/")){
             changeTownSelect.click();

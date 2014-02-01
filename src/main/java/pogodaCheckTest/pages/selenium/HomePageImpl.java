@@ -41,6 +41,7 @@ public class HomePageImpl extends BlockPageObject implements HomePage {
 
     @Override
     public void searchTown(String town) {
+        Utils.waitUntilelementWillAppear(driver, searchTextInput);
         searchTextInput.sendKeys(town);
         searchButton.click();
     }
@@ -57,6 +58,7 @@ public class HomePageImpl extends BlockPageObject implements HomePage {
 
     @Override
     public void checkTown(String town) {
+        Utils.waitUntilelementWillAppear(driver, searchTextInput);
         Utils.assertThatStringsContainSecond(driver.getTitle(), town);
         //Utils.assertThatStringsTheSame(townName.getText(),town);
         //Utils.assertThatItsTrue(townName.isDisplayed());
@@ -65,6 +67,7 @@ public class HomePageImpl extends BlockPageObject implements HomePage {
 
     @Override
     public void changeTown() {
+        Utils.waitUntilelementWillAppear(driver, changeTownLink);
         changeTownLink.click();
         if (!driver.getCurrentUrl().contains("/search/")){
             changeTownSelect.click();
@@ -73,6 +76,7 @@ public class HomePageImpl extends BlockPageObject implements HomePage {
 
     @Override
     public void getCurrentWeather() {
+        Utils.waitUntilelementWillAppear(driver, temperatureNow);
         temperatureNow.getText().contains("°C");
     }
 

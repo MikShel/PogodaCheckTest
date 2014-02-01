@@ -42,11 +42,13 @@ public class ResultPageImpl extends BlockPageObject implements ResultPage{
 
     @Override
     public void chooseTown(String town) {
+        Utils.waitUntilelementWillAppear(driver, townResults);
         getTown(town).click();
     }
 
     @Override
     public void checkNullResults() {
+        Utils.waitUntilelementWillAppear(driver, townResults);
         Utils.assertThatItsTrue(!checkNotNullResults());
     }
 

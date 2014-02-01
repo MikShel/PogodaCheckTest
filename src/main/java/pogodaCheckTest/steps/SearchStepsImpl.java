@@ -55,5 +55,6 @@ public class SearchStepsImpl extends ScenarioSteps {
     public void changeTown(String town) {
         homePage.changeTown();
         resultPage.chooseTown(town);
+        homePage.checkTown(town);
     }
 }

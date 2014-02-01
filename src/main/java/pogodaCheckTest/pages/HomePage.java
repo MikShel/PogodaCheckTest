@@ -6,9 +6,11 @@ public interface HomePage{
 
     public Boolean checkTownOnHomePage(String town);
 
-    public void getCurrentWeather();
+    public void checkCurrentWeather();
 
     public void checkTown(String town);
 
     void changeTown();
+
+    void checkCurrentTemperature();
 }

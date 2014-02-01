@@ -15,4 +15,9 @@ public class CheckWeatherSteps {
     public  void i_see_todays_weather (){
         checkWeatherSteps.checkCurrentWeather();
     }
+
+    @Then ("I see current temperature")
+    public  void i_see_current_temperature (){
+        checkWeatherSteps.checkCurrentTemperature();
+    }
 }

@@ -23,6 +23,7 @@ Then I am notified that it is not exist
 Scenario: Choose another town
 
 Given Im on the http://pogoda.yandex.by
-When I find Москва using search
-And I want to change town on Минск
+When I find Минск using search
+And I want to change town on Москва
+Then I see todays weather
 

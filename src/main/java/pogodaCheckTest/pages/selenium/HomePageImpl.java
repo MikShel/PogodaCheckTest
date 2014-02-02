@@ -62,9 +62,6 @@ public class HomePageImpl extends BlockPageObject implements HomePage {
     public void checkTown(String town) {
         Utils.waitUntilelementWillAppear(driver, townName);
         Utils.assertThatStringsContainSecond(driver.getTitle(), town);
-        //Utils.assertThatStringsTheSame(townName.getText(),town);
-        //Utils.assertThatItsTrue(townName.isDisplayed());
-
     }
 
     @Override

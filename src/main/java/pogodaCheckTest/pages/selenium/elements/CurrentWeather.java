@@ -30,7 +30,6 @@ public class CurrentWeather extends HtmlElement {
         List<WebElement> rows = currentWeather.getRows().get(0);
         if(rows.size() > 6){
             for (int i = 4; i < rows.size()-2; i++){
-                System.err.println("!!!!!!!" +rows.get(i).getText());
                 Utils.assertThatItsTrue(rows.get(i).getText().contains("днем") || rows.get(i).getText().contains("вечером")
                         || rows.get(i).getText().contains("ночью"));
             }

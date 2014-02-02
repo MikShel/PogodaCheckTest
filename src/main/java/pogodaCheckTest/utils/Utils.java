@@ -3,6 +3,7 @@ package pogodaCheckTest.utils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import ru.yandex.qatools.htmlelements.element.HtmlElement;
 import ru.yandex.qatools.htmlelements.element.TypifiedElement;
 import ru.yandex.qatools.htmlelements.thucydides.BlockPageObject;
 
@@ -12,13 +13,16 @@ import static org.hamcrest.CoreMatchers.*;
 
 import java.util.Objects;
 
-/**
- * Created by shelyagnn on 30.01.14.
- */
 public class Utils{
 
 
     public static void waitUntilelementWillAppear(WebDriver driver, TypifiedElement element) {
+        element.getWrappedElement();
+        new WebDriverWait(driver, 30).until(ExpectedConditions.visibilityOf(element.getWrappedElement()));
+
+    }
+
+    public static void waitUntilelementWillAppear(WebDriver driver, HtmlElement element) {
         element.getWrappedElement();
         new WebDriverWait(driver, 30).until(ExpectedConditions.visibilityOf(element.getWrappedElement()));
 

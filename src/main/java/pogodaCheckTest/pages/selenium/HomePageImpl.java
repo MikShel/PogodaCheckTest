@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pogodaCheckTest.pages.HomePage;
+import pogodaCheckTest.pages.selenium.elements.CurrentWeather;
 import pogodaCheckTest.utils.Utils;
 import ru.yandex.qatools.htmlelements.element.*;
 import ru.yandex.qatools.htmlelements.thucydides.BlockPageObject;
@@ -23,8 +24,8 @@ public class HomePageImpl extends BlockPageObject implements HomePage {
     @FindBy(css = "span.b-navigation-city__city")
     private TextBlock townName;
 
-    @FindBy(css = "div.b-thermometer__now")
-    private TextBlock temperatureNow;
+    @FindBy(css = "div.b-widget-current-weather")
+    private CurrentWeather currentWeather;
 
     @FindBy(css = "span.b-navigation-city__city-switcher")
     private Link changeTownLink;
@@ -41,6 +42,7 @@ public class HomePageImpl extends BlockPageObject implements HomePage {
 
     @Override
     public void searchTown(String town) {
+        Utils.waitUntilelementWillAppear(driver, searchTextInput);
         searchTextInput.sendKeys(town);
         searchButton.click();
     }
@@ -57,6 +59,7 @@ public class HomePageImpl extends BlockPageObject implements HomePage {
 
     @Override
     public void checkTown(String town) {
+        Utils.waitUntilelementWillAppear(driver, searchTextInput);
         Utils.assertThatStringsContainSecond(driver.getTitle(), town);
         //Utils.assertThatStringsTheSame(townName.getText(),town);
         //Utils.assertThatItsTrue(townName.isDisplayed());
@@ -64,16 +67,24 @@ public class HomePageImpl extends BlockPageObject implements HomePage {
     }
 
     @Override
-    public void changeTown(String town) {
+    public void changeTown() {
+        Utils.waitUntilelementWillAppear(driver, changeTownLink);
         changeTownLink.click();
-        if (!driver.getCurrentUrl().contains("/search/")){
+        if (!driver.getCurrentUrl().contains("/search/") & !driver.getCurrentUrl().contains("/choose/")){
             changeTownSelect.click();
         }
     }
 
     @Override
-    public void getCurrentWeather() {
-        temperatureNow.getText().contains("°C");
+    public void checkCurrentTemperature() {
+        checkCurrentWeather();
+        Utils.assertThatItsTrue(currentWeather.getTemperature().contains("°C"));
+    }
+
+    @Override
+    public void checkCurrentWeather() {
+        Utils.waitUntilelementWillAppear(driver, currentWeather);
+        currentWeather.checkCurentWeatherResultsExist();
     }
 
 }

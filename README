@@ -1,1 +1,5 @@
 Test task for ya, using: JUnit, Java, Thucydides, HTML elements, WebDriver
+
+How to run
+
+mvn clean integration-test thucydides:aggregate -Dwebdriver.driver=firefox -Dwebdriver.firefox.profile=PATH_to_FF_profile.default

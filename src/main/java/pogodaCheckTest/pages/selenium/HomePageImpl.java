@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import pogodaCheckTest.pages.HomePage;
 import pogodaCheckTest.pages.selenium.elements.CurrentWeather;
+import pogodaCheckTest.pages.selenium.elements.FutureWeather;
+import pogodaCheckTest.pages.selenium.elements.FutureWeatherControll;
 import pogodaCheckTest.utils.Utils;
 import ru.yandex.qatools.htmlelements.element.*;
 import ru.yandex.qatools.htmlelements.thucydides.BlockPageObject;
@@ -30,6 +32,12 @@ public class HomePageImpl extends BlockPageObject implements HomePage {
 
     @FindBy(css = "li.b-menu_layout_vert__layout-cell_last")
     private Link changeTownSelect;
+
+    @FindBy(css = "div.b-trigger-control")
+    private FutureWeatherControll futureWeatherControll;
+
+    @FindBy(css = "div.b-forecast-scroll")
+    private FutureWeather futureWeather;
 
     WebDriver driver;
 
@@ -89,6 +97,14 @@ public class HomePageImpl extends BlockPageObject implements HomePage {
     public void checkDetailedWeatherInfo() {
         checkCurrentWeather();
         currentWeather.checkDetailedWeatherInfo();
+    }
+
+    @Override
+    public void checkFutureWeather(String period) {
+        Utils.waitUntilelementWillAppear(driver, futureWeatherControll);
+        futureWeatherControll.getFutureWeather(period);
+        Utils.waitUntilelementWillAppear(driver, futureWeather.getControlElement(period));
+        futureWeather.checkFutureWeather(period);
     }
 
     @Override

@@ -17,4 +17,6 @@ public interface HomePage{
     void checkNextTimeTemperature();
 
     void checkDetailedWeatherInfo();
+
+    void checkFutureWeather(String period);
 }

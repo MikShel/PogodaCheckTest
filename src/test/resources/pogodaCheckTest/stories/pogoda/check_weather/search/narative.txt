@@ -1,0 +1,6 @@
+Check weather in concrete town
+
+Narrative:
+In order to check weather
+As a user
+I want to have possibility to find my town and get all weather data about it.

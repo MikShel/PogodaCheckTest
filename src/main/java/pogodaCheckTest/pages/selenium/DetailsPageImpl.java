@@ -1,5 +1,6 @@
 package pogodaCheckTest.pages.selenium;
 
+import net.thucydides.core.annotations.DefaultUrl;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+@DefaultUrl("/details")
 public class DetailsPageImpl extends BlockPageObject implements DetailsPage {
 
     @FindBy(css = "table.b-forecast-detailed__data")

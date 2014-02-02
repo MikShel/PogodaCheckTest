@@ -1,5 +1,6 @@
 package pogodaCheckTest.pages.selenium;
 
+import net.thucydides.core.annotations.DefaultUrl;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import pogodaCheckTest.pages.ClimatePage;
@@ -9,6 +10,7 @@ import ru.yandex.qatools.htmlelements.thucydides.BlockPageObject;
 
 import java.util.List;
 
+@DefaultUrl("/climate")
 public class ClimatePageImpl extends BlockPageObject implements ClimatePage{
 
     @FindBy(css = "div.b-climate-pic")

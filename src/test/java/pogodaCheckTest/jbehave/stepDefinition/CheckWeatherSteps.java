@@ -29,7 +29,7 @@ public class CheckWeatherSteps {
 
     @Then ("I see detailed weather info")
     public void i_see_detailed_weather_info(){
-        checkWeatherSteps.checkDetailedWeatherInfo();
+        checkWeatherSteps.checkDetailedCurrentWeatherInfo();
     }
 
     @Then ("I check $period future weather")

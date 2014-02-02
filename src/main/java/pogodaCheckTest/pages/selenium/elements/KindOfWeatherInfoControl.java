@@ -4,7 +4,7 @@ import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.htmlelements.element.HtmlElement;
 import ru.yandex.qatools.htmlelements.element.Link;
 
-public class FutureWeatherControll extends HtmlElement{
+public class KindOfWeatherInfoControl extends HtmlElement{
 
     @FindBy(css = "img.b-ico_type_short")
     private Link shortWeather;

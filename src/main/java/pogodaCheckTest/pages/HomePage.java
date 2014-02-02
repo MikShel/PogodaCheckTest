@@ -18,5 +18,7 @@ public interface HomePage{
 
     void checkDetailedWeatherInfo();
 
-    void checkFutureWeather(String period);
+    void checkFutureWeather();
+
+    void chooseKindOfDetails(String period);
 }

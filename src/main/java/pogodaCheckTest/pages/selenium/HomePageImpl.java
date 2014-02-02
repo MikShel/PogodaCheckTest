@@ -1,13 +1,15 @@
 package pogodaCheckTest.pages.selenium;
 
-import com.gargoylesoftware.htmlunit.ElementNotFoundException;
 import net.thucydides.core.annotations.DefaultUrl;
 
+import net.thucydides.core.annotations.findby.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import pogodaCheckTest.pages.HomePage;
+import pogodaCheckTest.pages.selenium.elements.ChangeTownControl;
 import pogodaCheckTest.pages.selenium.elements.CurrentWeather;
+import pogodaCheckTest.pages.selenium.elements.KindOfWeatherInfoControl;
+import pogodaCheckTest.pages.selenium.elements.Search;
 import pogodaCheckTest.utils.Utils;
 import ru.yandex.qatools.htmlelements.element.*;
 import ru.yandex.qatools.htmlelements.thucydides.BlockPageObject;
@@ -15,11 +17,8 @@ import ru.yandex.qatools.htmlelements.thucydides.BlockPageObject;
 
 @DefaultUrl("http://pogoda.yandex.ru")
 public class HomePageImpl extends BlockPageObject implements HomePage {
-    @FindBy(css = "input.b-form-input__input")
-    private TextInput searchTextInput;
-
-    @FindBy(css = "input.b-form-button__input")
-    private Button searchButton;
+    @FindBy(css = "div.b-head-search")
+    private Search searchElement;
 
     @FindBy(css = "span.b-navigation-city__city")
     private TextBlock townName;
@@ -27,11 +26,14 @@ public class HomePageImpl extends BlockPageObject implements HomePage {
     @FindBy(css = "div.b-widget-current-weather")
     private CurrentWeather currentWeather;
 
-    @FindBy(css = "span.b-navigation-city__city-switcher")
-    private Link changeTownLink;
+    @FindBy(css = "body.b-page")
+    private ChangeTownControl changeTownControl;
 
-    @FindBy(css = "li.b-menu_layout_vert__layout-cell_last")
-    private Link changeTownSelect;
+    @FindBy(css = "div.b-trigger-control")
+    private KindOfWeatherInfoControl kindOfWeatherInfoControl;
+
+    @FindBy(css = "table.b-forecast__layout")
+    private Table futureWeatherTable;
 
     WebDriver driver;
 
@@ -42,9 +44,8 @@ public class HomePageImpl extends BlockPageObject implements HomePage {
 
     @Override
     public void searchTown(String town) {
-        Utils.waitUntilelementWillAppear(driver, searchTextInput);
-        searchTextInput.sendKeys(town);
-        searchButton.click();
+        Utils.waitUntilelementWillAppear(driver, searchElement);
+        searchElement.search(town);
     }
 
     @Override
@@ -59,26 +60,49 @@ public class HomePageImpl extends BlockPageObject implements HomePage {
 
     @Override
     public void checkTown(String town) {
-        Utils.waitUntilelementWillAppear(driver, searchTextInput);
+        Utils.waitUntilelementWillAppear(driver, townName);
         Utils.assertThatStringsContainSecond(driver.getTitle(), town);
-        //Utils.assertThatStringsTheSame(townName.getText(),town);
-        //Utils.assertThatItsTrue(townName.isDisplayed());
-
     }
 
     @Override
     public void changeTown() {
-        Utils.waitUntilelementWillAppear(driver, changeTownLink);
-        changeTownLink.click();
+        Utils.waitUntilelementWillAppear(driver, changeTownControl);
+        changeTownControl.changeTownLinkClick();
         if (!driver.getCurrentUrl().contains("/search/") & !driver.getCurrentUrl().contains("/choose/")){
-            changeTownSelect.click();
+            changeTownControl.changeTownSelect();
         }
     }
 
     @Override
     public void checkCurrentTemperature() {
         checkCurrentWeather();
-        Utils.assertThatItsTrue(currentWeather.getTemperature().contains("°C"));
+        Utils.assertThatItsTrue(currentWeather.getCurrentTemperature().contains("°C"));
+    }
+
+    @Override
+    public void checkNextTimeTemperature() {
+        checkCurrentWeather();
+        currentWeather.checkNextTimeTemperatureExist();
+    }
+
+    @Override
+    public void checkDetailedWeatherInfo() {
+        checkCurrentWeather();
+        currentWeather.checkDetailedWeatherInfo();
+    }
+
+    @Override
+    public void checkFutureWeather() {
+        Utils.waitUntilelementWillAppear(driver, futureWeatherTable);
+        Utils.checkFutureDates(futureWeatherTable.getWrappedElement()
+                .findElements(By.cssSelector("th.b-forecast__item_type_head")));
+
+    }
+
+    @Override
+    public void chooseKindOfDetails(String period) {
+        Utils.waitUntilelementWillAppear(driver, kindOfWeatherInfoControl);
+        kindOfWeatherInfoControl.getFutureWeather(period);
     }
 
     @Override

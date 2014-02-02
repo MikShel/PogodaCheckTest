@@ -13,8 +13,6 @@ import pogodaCheckTest.pages.selenium.ResultPageImpl;
 public class CommonStepsImpl extends ScenarioSteps {
 
     CommonPage commonPage;
-    HomePage homePage;
-    ResultPage resultPage;
 
     public CommonStepsImpl(Pages pages) {
         super(pages);

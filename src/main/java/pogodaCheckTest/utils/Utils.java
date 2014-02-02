@@ -1,6 +1,7 @@
 package pogodaCheckTest.utils;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.yandex.qatools.htmlelements.element.HtmlElement;
@@ -11,6 +12,8 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 
+import java.util.Calendar;
+import java.util.List;
 import java.util.Objects;
 
 public class Utils{
@@ -50,6 +53,20 @@ public class Utils{
 
     public static void assertThatItsTrue (Boolean parameter){
         assertTrue(parameter);
+
+    }
+
+    public static void checkFutureDates(List<WebElement> futureDates){
+        for (int i = 0; i < futureDates.size(); i++ ){
+            Utils.assertThatItsTrue(futureDates.get(i).getText()
+                    .contains(getNextDate(i+1)));}
+    }
+
+    private static String getNextDate(int day){
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_MONTH, day);
+        return Integer.toString(calendar.get(Calendar.DAY_OF_MONTH));
 
     }
 

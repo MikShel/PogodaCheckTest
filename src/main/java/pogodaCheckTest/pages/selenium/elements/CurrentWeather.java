@@ -27,12 +27,23 @@ public class CurrentWeather extends HtmlElement {
 
     public void checkNextTimeTemperatureExist() {
         List<WebElement> rows = currentWeather.getRows().get(0);
-
+        for (WebElement element : rows){
+            System.err.println("!!!!!!! ALLL ELEMENTS " + element.getText());
+        }
         if(rows.size() > 6){
-            for (int i = 4; i < rows.size()-1; i++){
+            for (int i = 4; i < rows.size()-2; i++){
+                System.err.println("!!!!!!!" +rows.get(i).getText());
                 Utils.assertThatItsTrue(rows.get(i).getText().contains("днем") || rows.get(i).getText().contains("вечером")
                         || rows.get(i).getText().contains("ночью"));
             }
         }
+    }
+
+    public void checkDetailedWeatherInfo() {
+        List<WebElement> rows = currentWeather.getRows().get(0);
+        Utils.assertThatItsTrue(rows.get(rows.size()-1).getText().contains("Давление")
+                & rows.get(rows.size()-1).getText().contains("Ветер")
+                    & rows.get(rows.size()-1).getText().contains("Влажность")
+                        & rows.get(rows.size()-1).getText().contains("Восход"));
     }
 }

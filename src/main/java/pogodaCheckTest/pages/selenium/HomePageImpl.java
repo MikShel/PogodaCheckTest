@@ -86,6 +86,12 @@ public class HomePageImpl extends BlockPageObject implements HomePage {
     }
 
     @Override
+    public void checkDetailedWeatherInfo() {
+        checkCurrentWeather();
+        currentWeather.checkDetailedWeatherInfo();
+    }
+
+    @Override
     public void checkCurrentWeather() {
         Utils.waitUntilelementWillAppear(driver, currentWeather);
         currentWeather.checkCurentWeatherResultsExist();

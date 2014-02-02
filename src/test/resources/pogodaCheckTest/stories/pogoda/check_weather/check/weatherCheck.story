@@ -25,5 +25,5 @@ Then I check detailed future weather
 
 Scenario: Check detailed future weather
 Given Im on the http://pogoda.yandex.by
-When I find Будапешт using search
+When I find Брест using search
 Then I check climate

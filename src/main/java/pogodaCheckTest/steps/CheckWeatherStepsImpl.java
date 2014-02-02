@@ -51,4 +51,9 @@ public class CheckWeatherStepsImpl extends ScenarioSteps {
     public void checkFutureWeather(String period) {
         homePage.checkFutureWeather(period);
     }
+
+    @Step
+    public void checkClimate() {
+        homePage.checkFutureWeather("climate");
+    }
 }

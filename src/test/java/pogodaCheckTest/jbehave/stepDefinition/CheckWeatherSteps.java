@@ -37,4 +37,9 @@ public class CheckWeatherSteps {
         checkWeatherSteps.checkFutureWeather(period);
     }
 
+    @Then ("I check climate")
+    public void i_check_climate(){
+        checkWeatherSteps.checkClimate();
+    }
+
 }

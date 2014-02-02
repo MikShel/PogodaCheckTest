@@ -28,7 +28,7 @@ public class FutureWeather extends HtmlElement {
     @FindBy(css = "tr.b-forecast-detailed__line")
     private List<TextBlock> futureDetailedWeatherData;
 
-    @FindBy(css = "div.b-forecast-climate")
+    @FindBy(css = "div.b-climate-pic")
     private List<TextBlock> climate;
 
     public TypifiedElement getControlElement(String period){
@@ -52,7 +52,6 @@ public class FutureWeather extends HtmlElement {
 
                 break;
             case ("detailed"):
-                int i =0;
                 List<WebElement> dates = new ArrayList<WebElement>();
                 for (TextBlock date : futureDetailedWeatherData){
                     if(!date.getText().isEmpty()){
@@ -64,6 +63,13 @@ public class FutureWeather extends HtmlElement {
                 checkFutureDates(dates);
                 break;
             case ("climate"):
+                for (TextBlock graf : climate){
+                    Utils.assertThatItsTrue(graf.getText().contains("Относительная влажность")
+                            || graf.getText().contains("Число дней с осадками более 1 мм")
+                            || graf.getText().contains("Количество осадков")
+                            || graf.getText().contains("Температура днём")
+                            || graf.getText().contains("Температура ночью"));
+                }
                 break;
         }
 

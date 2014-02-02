@@ -19,6 +19,7 @@ public class CurrentWeather extends HtmlElement {
     }
 
     public void checkCurentWeatherResultsExist(){
+        System.err.println("!!!!!!!!!!!" + currentWeather.getColumns().size());
         Utils.assertThatItsTrue(currentWeather.getColumns().size() >= 2);
     }
 

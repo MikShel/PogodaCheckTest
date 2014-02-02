@@ -21,4 +21,7 @@ public interface HomePage{
     void checkFutureWeather();
 
     void chooseKindOfDetails(String period);
+
+    void getMapView();
+
 }

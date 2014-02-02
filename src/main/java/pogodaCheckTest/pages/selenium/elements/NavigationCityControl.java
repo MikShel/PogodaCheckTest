@@ -5,7 +5,7 @@ import pogodaCheckTest.utils.Utils;
 import ru.yandex.qatools.htmlelements.element.HtmlElement;
 import ru.yandex.qatools.htmlelements.element.Link;
 
-public class ChangeTownControl extends HtmlElement {
+public class NavigationCityControl extends HtmlElement {
 
     @FindBy(css = "span.b-navigation-city__city-switcher")
     private Link changeTownLink;
@@ -13,7 +13,10 @@ public class ChangeTownControl extends HtmlElement {
     @FindBy(css = "li.b-menu_layout_vert__layout-cell_last")
     private Link changeTownSelect;
 
-    public ChangeTownControl() {
+    @FindBy(css = "span.b-navigation-city__map")
+    private Link mapViewLink;
+
+    public NavigationCityControl() {
 
     }
 
@@ -23,5 +26,9 @@ public class ChangeTownControl extends HtmlElement {
 
     public void changeTownSelect(){
         changeTownSelect.click();
+    }
+
+    public void chooseMapView(){
+        mapViewLink.click();
     }
 }

@@ -34,9 +34,10 @@ public class DetailsPageImpl extends BlockPageObject implements DetailsPage {
     public void checkDetailedWeatherInfo() {
         Utils.waitUntilelementWillAppear(driver, futureDetailedWeatherTableData);
         List<WebElement> dates = new ArrayList<WebElement>();
+        Calendar calendar = Calendar.getInstance();
         for (TextBlock date : futureDetailedWeatherData){
             if(!date.getText().isEmpty()){
-                if(!date.getText().contains(String.valueOf(Calendar.DAY_OF_MONTH))){
+                if(!date.getText().contains(String.valueOf(calendar.get(Calendar.DAY_OF_MONTH)))){
                     dates.add(date.getWrappedElement());
                 }
             }

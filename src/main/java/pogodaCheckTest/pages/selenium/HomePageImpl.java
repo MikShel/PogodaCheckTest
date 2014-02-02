@@ -4,15 +4,19 @@ import net.thucydides.core.annotations.DefaultUrl;
 
 import net.thucydides.core.annotations.findby.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pogodaCheckTest.pages.HomePage;
-import pogodaCheckTest.pages.selenium.elements.ChangeTownControl;
+import pogodaCheckTest.pages.selenium.elements.NavigationCityControl;
 import pogodaCheckTest.pages.selenium.elements.CurrentWeather;
 import pogodaCheckTest.pages.selenium.elements.KindOfWeatherInfoControl;
 import pogodaCheckTest.pages.selenium.elements.Search;
 import pogodaCheckTest.utils.Utils;
 import ru.yandex.qatools.htmlelements.element.*;
 import ru.yandex.qatools.htmlelements.thucydides.BlockPageObject;
+
+import java.util.Calendar;
+import java.util.List;
 
 
 @DefaultUrl("http://pogoda.yandex.ru")
@@ -27,7 +31,7 @@ public class HomePageImpl extends BlockPageObject implements HomePage {
     private CurrentWeather currentWeather;
 
     @FindBy(css = "body.b-page")
-    private ChangeTownControl changeTownControl;
+    private NavigationCityControl navigationCityControl;
 
     @FindBy(css = "div.b-trigger-control")
     private KindOfWeatherInfoControl kindOfWeatherInfoControl;
@@ -66,10 +70,10 @@ public class HomePageImpl extends BlockPageObject implements HomePage {
 
     @Override
     public void changeTown() {
-        Utils.waitUntilelementWillAppear(driver, changeTownControl);
-        changeTownControl.changeTownLinkClick();
+        Utils.waitUntilelementWillAppear(driver, navigationCityControl);
+        navigationCityControl.changeTownLinkClick();
         if (!driver.getCurrentUrl().contains("/search/") & !driver.getCurrentUrl().contains("/choose/")){
-            changeTownControl.changeTownSelect();
+            navigationCityControl.changeTownSelect();
         }
     }
 
@@ -94,8 +98,13 @@ public class HomePageImpl extends BlockPageObject implements HomePage {
     @Override
     public void checkFutureWeather() {
         Utils.waitUntilelementWillAppear(driver, futureWeatherTable);
-        Utils.checkFutureDates(futureWeatherTable.getWrappedElement()
-                .findElements(By.cssSelector("th.b-forecast__item_type_head")));
+        List<WebElement> futureDate =  futureWeatherTable.getWrappedElement()
+                .findElements(By.cssSelector("th.b-forecast__item_type_head"));
+        Calendar calendar = Calendar.getInstance();
+        if(futureDate.get(0).getText().contains(String.valueOf(calendar.get(Calendar.DAY_OF_MONTH)))){
+            futureDate.remove(0);
+        }
+        Utils.checkFutureDates(futureDate);
 
     }
 
@@ -103,6 +112,12 @@ public class HomePageImpl extends BlockPageObject implements HomePage {
     public void chooseKindOfDetails(String period) {
         Utils.waitUntilelementWillAppear(driver, kindOfWeatherInfoControl);
         kindOfWeatherInfoControl.getFutureWeather(period);
+    }
+
+    @Override
+    public void getMapView() {
+        Utils.waitUntilelementWillAppear(driver, navigationCityControl);
+        navigationCityControl.chooseMapView();
     }
 
     @Override

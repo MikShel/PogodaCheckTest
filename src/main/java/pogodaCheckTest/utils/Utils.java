@@ -58,6 +58,7 @@ public class Utils{
 
     public static void checkFutureDates(List<WebElement> futureDates){
         for (int i = 0; i < futureDates.size(); i++ ){
+            System.err.println("!!!!!!!!!! i fate " + futureDates.get(i).getText());
             Utils.assertThatItsTrue(futureDates.get(i).getText()
                     .contains(getNextDate(i+1)));}
     }

@@ -56,7 +56,6 @@ public class ResultPageImpl extends BlockPageObject implements ResultPage{
         //Utils.waitUntilelementWillAppear(driver, townResults);
         System.err.println("!!!!!!!!!!!!" + townLinks.size());
         for (Link townLink: townLinks){
-            System.err.println("!!!!!!!!!!!!" + townLink.getText());
             if (townLink.getText().contains(town)){
                 return townLink;
             }

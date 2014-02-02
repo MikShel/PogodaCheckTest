@@ -2,11 +2,11 @@ package pogodaCheckTest.pages;
 
 public interface ResultPage {
 
-    public void checkResults(String town);
+    void checkResults(String town);
 
-    public Boolean checkNotNullResults();
+    Boolean checkNotNullResults();
 
-    public void chooseTown(String town);
+    void chooseTown(String town);
 
-    public void checkNullResults();
+    void checkNullResults();
 }

@@ -36,4 +36,13 @@ public class CheckWeatherStepsImpl extends ScenarioSteps {
     public void checkCurrentTemperature() {
         homePage.checkCurrentTemperature();
     }
+
+    @Step
+    public void checkNextTimeTemperature() {
+        homePage.checkNextTimeTemperature();
+    }
+
+    public void checkDetailedWeatherInfo() {
+        homePage.checkDetailedWeatherInfo();
+    }
 }

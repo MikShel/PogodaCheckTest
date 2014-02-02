@@ -20,4 +20,15 @@ public class CheckWeatherSteps {
     public  void i_see_current_temperature (){
         checkWeatherSteps.checkCurrentTemperature();
     }
+
+    @Then ("I see next time period temperature")
+    public  void i_see_next_temperature (){
+        checkWeatherSteps.checkNextTimeTemperature();
+    }
+
+    @Then ("I see detailed weather info")
+    public void i_see_detailed_weather_info(){
+        checkWeatherSteps.checkDetailedWeatherInfo();
+    }
+
 }

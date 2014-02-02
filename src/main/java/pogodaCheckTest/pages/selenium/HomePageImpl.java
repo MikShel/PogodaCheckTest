@@ -1,11 +1,9 @@
 package pogodaCheckTest.pages.selenium;
 
-import com.gargoylesoftware.htmlunit.ElementNotFoundException;
 import net.thucydides.core.annotations.DefaultUrl;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import pogodaCheckTest.pages.HomePage;
 import pogodaCheckTest.pages.selenium.elements.CurrentWeather;
 import pogodaCheckTest.utils.Utils;
@@ -78,7 +76,13 @@ public class HomePageImpl extends BlockPageObject implements HomePage {
     @Override
     public void checkCurrentTemperature() {
         checkCurrentWeather();
-        Utils.assertThatItsTrue(currentWeather.getTemperature().contains("°C"));
+        Utils.assertThatItsTrue(currentWeather.getCurrentTemperature().contains("°C"));
+    }
+
+    @Override
+    public void checkNextTimeTemperature() {
+        checkCurrentWeather();
+        currentWeather.checkNextTimeTemperatureExist();
     }
 
     @Override

@@ -2,13 +2,26 @@ package pogodaCheckTest.pages;
 
 public interface HomePage{
 
-    public void searchTown(String town);
+    void searchTown(String town);
 
-    public Boolean checkTownOnHomePage(String town);
+    Boolean checkTownOnHomePage(String town);
 
-    public void getCurrentWeather();
+    void checkCurrentWeather();
 
-    public void checkTown(String town);
+    void checkTown(String town);
 
-    void changeTown(String town);
+    void changeTown();
+
+    void checkCurrentTemperature();
+
+    void checkNextTimeTemperature();
+
+    void checkDetailedWeatherInfo();
+
+    void checkFutureWeather();
+
+    void chooseKindOfDetails(String period);
+
+    void getMapView();
+
 }

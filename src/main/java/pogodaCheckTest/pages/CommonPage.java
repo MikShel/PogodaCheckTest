@@ -2,8 +2,8 @@ package pogodaCheckTest.pages;
 
 public interface CommonPage {
 
-    public void navigate (String url);
+    void navigate (String url);
 
-    public String getCurrentUrl();
+    String getCurrentUrl();
 
 }

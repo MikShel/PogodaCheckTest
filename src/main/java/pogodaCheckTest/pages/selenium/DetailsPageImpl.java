@@ -1,5 +1,6 @@
 package pogodaCheckTest.pages.selenium;
 
+import net.thucydides.core.annotations.DefaultUrl;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+@DefaultUrl("/details")
 public class DetailsPageImpl extends BlockPageObject implements DetailsPage {
 
     @FindBy(css = "table.b-forecast-detailed__data")
@@ -32,9 +34,10 @@ public class DetailsPageImpl extends BlockPageObject implements DetailsPage {
     public void checkDetailedWeatherInfo() {
         Utils.waitUntilelementWillAppear(driver, futureDetailedWeatherTableData);
         List<WebElement> dates = new ArrayList<WebElement>();
+        Calendar calendar = Calendar.getInstance();
         for (TextBlock date : futureDetailedWeatherData){
             if(!date.getText().isEmpty()){
-                if(!date.getText().contains(String.valueOf(Calendar.DAY_OF_MONTH))){
+                if(!date.getText().contains(String.valueOf(calendar.get(Calendar.DAY_OF_MONTH)))){
                     dates.add(date.getWrappedElement());
                 }
             }

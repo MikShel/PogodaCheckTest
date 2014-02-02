@@ -9,10 +9,10 @@ public class FutureWeatherControll extends HtmlElement{
     @FindBy(css = "img.b-ico_type_short")
     private Link shortWeather;
 
-    @FindBy(partialLinkText = "img.b-ico_type_full")
+    @FindBy(css = "img.b-ico_type_full")
     private Link detailsWeather;
 
-    @FindBy(partialLinkText = "img.b-ico_type_klim")
+    @FindBy(css = "img.b-ico_type_klim")
     private Link climate;
 
     public void getFutureWeather(String period) {
